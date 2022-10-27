@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+<title>表單</title>
+<form action="" method="POST">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <input class='btn btn-primary' type='submit' value='儲存'/>
+</form>
+
+</html>
