@@ -54,6 +54,7 @@ et-xmlfile==1.1.0
 executing==0.10.0
 fastjsonschema==2.16.1
 flake8==5.0.4
+flake8-django==1.1.5
 flatbuffers==1.12
 gast==0.4.0
 google-api-core==2.8.2
