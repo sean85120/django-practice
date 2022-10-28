@@ -6,7 +6,7 @@ name: default
 
 steps: 
   - name: flake8
-    image: python:3.7   
+    image: python:3.8
     commands:
       - python -m pip install -r /django_practice/requirements.txt
       - flake8 /django_practice/django_practice
