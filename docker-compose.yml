@@ -12,7 +12,7 @@ services:
     restart: always    
     environment:      
       - DRONE_SERVER_HOST=${DRONE_SERVER_HOST}      
-      - DRONE_SERVER_PROTO=https     
+      - DRONE_SERVER_PROTO=http
       - DRONE_USER_CREATE=username:${ADMIN},admin:true      
       - DRONE_RUNNER_CAPACITY=2      
       - DRONE_GIT_ALWAYS_AUTH=true       
