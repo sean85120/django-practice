@@ -9,7 +9,7 @@ steps:
     image: python:3.7   
     commands:
       - python -m pip install -r /django_practice/requirements.txt
-      - flake8 
+      - flake8 /django_practice/django_practice
     when:      
       event:      
         - push      
