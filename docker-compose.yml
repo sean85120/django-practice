@@ -11,7 +11,7 @@ services:
     restart: always    
     environment:      
       - DRONE_SERVER_HOST=${DRONE_SERVER_HOST}      
-      - DRONE_SERVER_PROTO=http      
+      - DRONE_SERVER_PROTO=https      
       - DRONE_USER_CREATE=username:${ADMIN},admin:true      
       - DRONE_RUNNER_CAPACITY=2      
       - DRONE_GIT_ALWAYS_AUTH=true       
@@ -20,6 +20,7 @@ services:
       - DRONE_GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID}      
       - DRONE_GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET}      
       - DRONE_USER_FILTER=${AUTH_USER}  
+      - DRONE_RPC_SECRET=b51c2ed2ffb62a3b78f4a3e6d77397fc
   drone-agent:    
     image: drone/agent:1 
     restart: always    
@@ -30,3 +31,4 @@ services:
     environment:      
       - DRONE_RPC_SERVER=drone-server      
       - DRONE_RUNNER_CAPACITY=4
+      - DRONE_RPC_SECRET=b51c2ed2ffb62a3b78f4a3e6d77397fc
