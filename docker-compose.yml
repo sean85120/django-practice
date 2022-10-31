@@ -10,7 +10,7 @@ services:
       - /var/lib/drone:/var/lib/drone/
     restart: always
     environment:
-      - DRONE_SERVER_HOST=af75-1-163-97-22.jp.ngrok.io 
+      - DRONE_SERVER_HOST=7e9d-125-228-171-25.jp.ngrok.io
       - DRONE_SERVER_PROTO=https
       - DRONE_RPC_SECRET=f1390481f69c7c5dc18f954f3e7b6445
       - DRONE_GITHUB_CLIENT_ID=7c5c0377304b1b84074a
