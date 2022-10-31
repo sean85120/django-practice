@@ -15,6 +15,7 @@ services:
       - DRONE_RPC_SECRET=f1390481f69c7c5dc18f954f3e7b6445
       - DRONE_GITHUB_CLIENT_ID=7c5c0377304b1b84074a
       - DRONE_GITHUB_CLIENT_SECRET=cfe4f24e3dde0920268ca9d9383f1fdd34a01e5c
+      - DRONE_USER_CREATE=username:sean85120,admin:true
 
   drone-runner:
     image: drone/drone-runner-docker:1
