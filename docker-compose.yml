@@ -1,6 +1,12 @@
 # docker-compose.yml
 version: "3"
 services:
+  django:
+    image: django-docker:0.0.1
+    build: .
+    ports:
+      - 8000:8000
+
   drone-server:
     image: drone/drone:1
     container_name: drone-server
