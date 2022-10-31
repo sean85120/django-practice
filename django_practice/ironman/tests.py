@@ -1,11 +1,11 @@
-from django.test import TestCase
+# from django.test import TestCase
 
 # Create your tests here.
 
+
 def test(a, b):
-    return a+b
-
-def test2(a,b):
-    return a*b
+    return a + b
 
 
+def test2(a, b):
+    return a * b

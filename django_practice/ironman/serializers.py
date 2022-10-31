@@ -1,5 +1,10 @@
 from rest_framework import serializers
 from .models import People
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
+from .models import UserProfile
+from rest_framework.validators import UniqueValidator
+from django.contrib.auth.password_validation import validate_password
 
 
 class People2Serializer(serializers.ModelSerializer):
@@ -18,12 +23,6 @@ class PeopleSerializer(serializers.Serializer):
     def validate_date(self):
         if self.age < 0:
             raise serializers.ValidationError("Age must be bigger than 0!")
-
-
-from django.contrib.auth.models import User
-from .models import UserProfile
-from rest_framework.validators import UniqueValidator
-from django.contrib.auth.password_validation import validate_password
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -63,7 +62,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             password=validated_data["password"],
         )
 
-        userprofile = UserProfile.objects.create(
+        UserProfile.objects.create(
             user=user,
             phone=validated_data["phone"],
             organization=validated_data["organization"],
@@ -76,7 +75,6 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 # login
-from django.contrib.auth import authenticate
 
 
 class LoginSerializer(serializers.Serializer):
@@ -106,12 +104,3 @@ class LoginSerializer(serializers.Serializer):
 
         attrs["user"] = user
         return attrs
-
-
-from .models import Equipment
-
-
-class EquipmentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Equipment
-        fields = "__all__"

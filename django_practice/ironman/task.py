@@ -1,6 +1,8 @@
 # myproject/tasks.py
 # 专属于myproject项目的任务
 from celery import Celery
+from celery import shared_task
+import time
 
 app = Celery("myproject")
 
@@ -11,8 +13,6 @@ def test():
 
 
 # app/tasks.py, 可以复用的task
-from celery import shared_task
-import time
 
 
 @shared_task

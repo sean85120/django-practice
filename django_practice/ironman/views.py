@@ -1,9 +1,24 @@
-from http.client import HTTPResponse
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import PeopleForm
 from .filters import PeopleFilterSet
-from .serializers import EquipmentSerializer
+
+from rest_framework import views
+from django.contrib.auth import logout
+
+from .serializers import LoginSerializer
+from django.contrib.auth import login
+
+from .models import People
+from .serializers import PeopleSerializer, People2Serializer
+from rest_framework import generics
+
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+from .serializers import RegisterSerializer
+
 
 # Create your views here.
 
@@ -35,11 +50,6 @@ def form(request):
     return render(request, "form.html", context)
 
 
-from .models import Equipment, People
-from .serializers import PeopleSerializer, People2Serializer
-from rest_framework import generics
-
-
 class PeopleListAPIView(generics.ListAPIView):
     queryset = People.objects.all()
     serializer_class = PeopleSerializer
@@ -56,11 +66,6 @@ class PeopleUpdateAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = People2Serializer
 
 
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from rest_framework import status
-
-
 @api_view(["GET"])
 def people_data(request):
     if request.method == "GET":
@@ -68,13 +73,6 @@ def people_data(request):
         serializer = PeopleSerializer(people, many=True)
 
         return Response(serializer.data)
-
-
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from .models import People
-from .serializers import PeopleSerializer
 
 
 @api_view(["GET", "POST"])
@@ -91,10 +89,6 @@ def people_list(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-from rest_framework import generics
-from .serializers import RegisterSerializer
 
 
 class RegisterAPIView(generics.GenericAPIView):
@@ -114,11 +108,6 @@ class RegisterAPIView(generics.GenericAPIView):
             {"message": "The input content is invalid"},
             status=status.HTTP_400_BAD_REQUEST,
         )
-
-
-from .serializers import LoginSerializer
-from rest_framework import views
-from django.contrib.auth import login
 
 
 class LoginAPIView(generics.GenericAPIView):
@@ -144,17 +133,8 @@ class LoginAPIView(generics.GenericAPIView):
         )
 
 
-from rest_framework import views
-from django.contrib.auth import logout
-
-
 class LogoutAPIView(views.APIView):
     def get(self, request):
         logout(request)
 
         return Response({"message": "logout successfully"}, status=status.HTTP_200_OK)
-
-
-class EquipmentListView(generics.ListAPIView):
-    queryset = Equipment.objects.using("test").all()
-    serializer_class = EquipmentSerializer

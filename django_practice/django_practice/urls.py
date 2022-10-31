@@ -15,21 +15,34 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from ironman.views import index, hello, form, people_data, people_list, RegisterAPIView, LoginAPIView, LogoutAPIView, PeopleUpdateAPIView
-from ironman.views import PeopleCreateAPIView, PeopleListAPIView, EquipmentListView
+from ironman.views import (
+    index,
+    hello,
+    form,
+    people_data,
+    people_list,
+    RegisterAPIView,
+    LoginAPIView,
+    LogoutAPIView,
+    PeopleUpdateAPIView,
+)
+from ironman.views import PeopleCreateAPIView, PeopleListAPIView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', index, name='index'),
-    path('hello/', hello, name='hello'),
-    path('form/', form, name='form'),
-    path('api/2', people_data, name='api2'),
-    path('api/3', people_list, name='api-people'),
-    path('api/register', RegisterAPIView.as_view(), name='api-register'),
-    path('api/login', LoginAPIView.as_view(), name='api-login'),
-    path('api/logout', LogoutAPIView.as_view(), name='api-logout'),
-    path('api/data/create', PeopleCreateAPIView.as_view(), name='api-data-create'),
-    path('api/data/list', PeopleListAPIView.as_view(), name='api-data-list'),
-    path('api/data/update/<int:pk>', PeopleUpdateAPIView.as_view(), name='api-data-update'),
-    path('api/ipvita/equipment/list', EquipmentListView.as_view(), name='api-ipvita-equipment-list'),
+    path("admin/", admin.site.urls),
+    path("", index, name="index"),
+    path("hello/", hello, name="hello"),
+    path("form/", form, name="form"),
+    path("api/2", people_data, name="api2"),
+    path("api/3", people_list, name="api-people"),
+    path("api/register", RegisterAPIView.as_view(), name="api-register"),
+    path("api/login", LoginAPIView.as_view(), name="api-login"),
+    path("api/logout", LogoutAPIView.as_view(), name="api-logout"),
+    path("api/data/create", PeopleCreateAPIView.as_view(), name="api-data-create"),
+    path("api/data/list", PeopleListAPIView.as_view(), name="api-data-list"),
+    path(
+        "api/data/update/<int:pk>",
+        PeopleUpdateAPIView.as_view(),
+        name="api-data-update",
+    ),
 ]
