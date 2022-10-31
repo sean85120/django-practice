@@ -96,8 +96,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    
-    'test':{
+
+    'test': {
         'ENGINE': 'django.db.backends.mysql',
         'HOST': '192.168.1.200',
         'PORT': '3307',

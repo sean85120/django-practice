@@ -9,7 +9,8 @@ steps:
     image: python:3.8
     commands:
       - pip install -r requirements.txt
-      - flake8 
+      - flake8 --max-line-length 200
+
     when:      
       event:      
         - push      

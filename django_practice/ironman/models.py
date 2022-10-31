@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+
 class People(models.Model):
     name = models.CharField(max_length=20)
     age = models.PositiveIntegerField()
@@ -16,27 +17,28 @@ class People(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone = models.CharField(max_length=10, blank=True, null=True)
-    organization = models.CharField(max_length=100, blank=True, null=True)
+    phone = models.CharField(max_length=10, blank=True)
+    organization = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return self.user.username
 
+
 class Equipment(models.Model):
-    Site = models.CharField(max_length=20,null=True)
-    UserSite = models.CharField(max_length=20,null=True)
+    Site = models.CharField(max_length=20)
+    UserSite = models.CharField(max_length=20)
     # ExportSite = models.CharField(max_length=20,null=True)
     # OwnerSite = models.CharField(max_length=20,null=True)
     # SEQ = models.IntegerField(blank=True, null=True)
-    EQP_ID = models.CharField(max_length=20,primary_key=True, unique=True)
-    User_EQP_ID =models.CharField(max_length=20,null=True)
+    EQP_ID = models.CharField(max_length=20, primary_key=True, unique=True)
+    User_EQP_ID = models.CharField(max_length=20)
     # Export_EQP_ID = models.CharField(max_length=20,null=True)
     # Owner_EQP_ID = models.CharField(max_length=20,null=True)
     # Mobus_Id = models.CharField(max_length=20,null=True)
     # ComPort_Id = models.IntegerField(blank=True, null=True)
-    DESCRIPTION = models.CharField(max_length=200,null=True)
-    EQP_TYPE = models.CharField(max_length=20,null=True)
-    EQP_VENDOR = models.CharField(max_length=20,null=True)
+    DESCRIPTION = models.CharField(max_length=200)
+    EQP_TYPE = models.CharField(max_length=20)
+    EQP_VENDOR = models.CharField(max_length=20)
     # EQP_MODE = models.CharField(max_length=20,null=True)
     # EQP_MODEL = models.CharField(max_length=20,null=True)
     # EQP_OFFSET = models.IntegerField(blank=True, null=True)
@@ -66,6 +68,9 @@ class Equipment(models.Model):
     # MAC = models.CharField(max_length=100,null=True)
     # Export_SiteSummary_Date = models.DateTimeField(null=True)
 
+    def __str__(self):
+        self.Site
+
     class Meta:
         managed = False
-        db_table = 'equipment'
+        db_table = "equipment"
