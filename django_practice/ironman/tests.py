@@ -12,3 +12,5 @@ def test2(a, b):
 
 def test3(a, b):
     return a ** b
+def test4():
+    pass
