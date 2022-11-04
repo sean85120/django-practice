@@ -9,3 +9,7 @@ def test(a, b):
 
 def test2(a, b):
     return a * b
+
+
+def test3():
+    pass
