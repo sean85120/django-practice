@@ -13,3 +13,7 @@ def test2(a, b):
 
 def test3():
     pass
+
+
+def test4(a, b):
+    pass
