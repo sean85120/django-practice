@@ -3,13 +3,13 @@ version: "3"
 services:
   django:
     build:
-        context: .
+      context: .
     ports:
       - "9000:9000"
     volumes:
       - ./app:/app
     command: >
-      sh -c "python manage.py runserver 0.0.0.0:9000"
+      sh -c "python django_practice/manage.py runserver 0.0.0.0:9000"
 
   drone-server:
     image: drone/drone:1
@@ -20,7 +20,7 @@ services:
       - /var/lib/drone:/var/lib/drone/
     restart: always
     environment:
-      - DRONE_SERVER_HOST=65c0-125-228-171-25.jp.ngrok.io 
+      - DRONE_SERVER_HOST=bcec-125-228-171-25.jp.ngrok.io
       - DRONE_SERVER_PROTO=https
       - DRONE_RPC_SECRET=f1390481f69c7c5dc18f954f3e7b6445
       - DRONE_GITHUB_CLIENT_ID=7c5c0377304b1b84074a
