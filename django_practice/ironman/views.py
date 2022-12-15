@@ -21,6 +21,21 @@ from .serializers import RegisterSerializer
 
 
 # Create your views here.
+from .tasks import add
+from celery.result import AsyncResult
+
+
+def test_celery(request):
+    result = add.apply_async(args=[3, 5])
+
+    AsyncResult(result.task_id).status
+    AsyncResult(result.task_id).result
+
+    return HttpResponse(result.task_id + ":" + result.status)
+
+    # x = add.delay(3, 5)
+
+    # return HttpResponse("celery works")
 
 
 def index(request):

@@ -26,7 +26,7 @@ from ironman.views import (
     LogoutAPIView,
     PeopleUpdateAPIView,
 )
-from ironman.views import PeopleCreateAPIView, PeopleListAPIView
+from ironman.views import PeopleCreateAPIView, PeopleListAPIView, test_celery
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -45,4 +45,5 @@ urlpatterns = [
         PeopleUpdateAPIView.as_view(),
         name="api-data-update",
     ),
+    path("test/celery", test_celery),
 ]
