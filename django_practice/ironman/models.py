@@ -74,3 +74,12 @@ class Equipment(models.Model):
     class Meta:
         managed = False
         db_table = "equipment"
+
+
+class Item(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+    people = models.ForeignKey(People, on_delete=models.PROTECT, blank=True, null=True)
+
+    def __str__(self):
+        return self.name

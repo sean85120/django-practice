@@ -9,8 +9,8 @@ from django.contrib.auth import logout
 from .serializers import LoginSerializer
 from django.contrib.auth import login
 
-from .models import People
-from .serializers import PeopleSerializer, People2Serializer
+from .models import People, Item
+from .serializers import PeopleSerializer, People2Serializer, ItemSerializer
 from rest_framework import generics
 
 from rest_framework import status
@@ -18,6 +18,9 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from .serializers import RegisterSerializer
+
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from .serializers import UserSerializer
 
 
 # Create your views here.
@@ -66,6 +69,8 @@ def form(request):
 
 
 class PeopleListAPIView(generics.ListAPIView):
+
+    permission_classes = (AllowAny,)
     queryset = People.objects.all()
     serializer_class = PeopleSerializer
     filter_class = PeopleFilterSet
@@ -153,3 +158,16 @@ class LogoutAPIView(views.APIView):
         logout(request)
 
         return Response({"message": "logout successfully"}, status=status.HTTP_200_OK)
+
+
+class ItemCreate(generics.CreateAPIView):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
+
+
+class UserRetrieve(generics.RetrieveAPIView):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = UserSerializer
+
+    def get_object(self):
+        return self.request.user

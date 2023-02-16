@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import People
+from .models import People, Item
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from .models import UserProfile
@@ -104,3 +104,18 @@ class LoginSerializer(serializers.Serializer):
 
         attrs["user"] = user
         return attrs
+
+
+class ItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Item
+        fields = "__all__"
+
+
+from django.contrib.auth import get_user_model
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ("id", "username")

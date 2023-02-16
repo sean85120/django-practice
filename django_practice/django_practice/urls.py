@@ -26,7 +26,15 @@ from ironman.views import (
     LogoutAPIView,
     PeopleUpdateAPIView,
 )
-from ironman.views import PeopleCreateAPIView, PeopleListAPIView, test_celery
+from ironman.views import (
+    PeopleCreateAPIView,
+    PeopleListAPIView,
+    test_celery,
+    ItemCreate,
+    UserRetrieve,
+)
+
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -46,4 +54,11 @@ urlpatterns = [
         name="api-data-update",
     ),
     path("test/celery", test_celery),
+    path("api/item/create", ItemCreate.as_view(), name="api-item-create"),
+    # simple jwt
+    path(
+        "api/token/obtain", TokenObtainPairView.as_view(), name="api-token-obtain-pair"
+    ),
+    path("api/token/refresh", TokenRefreshView.as_view(), name="api-token-refresh"),
+    path("api/user", UserRetrieve.as_view(), name="api-user-retrieve"),
 ]
