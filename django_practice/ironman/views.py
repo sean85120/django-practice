@@ -21,6 +21,17 @@ from .serializers import RegisterSerializer
 
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .serializers import UserSerializer
+from django.http import StreamingHttpResponse
+
+
+# asgi
+from django_eventstream import send_event
+
+
+def test_sse(request):
+    message = send_event("test", "message", {"text": "hello world"})
+    print("message: ", message)
+    return HttpResponse(message, content_type="event-stream")
 
 
 # Create your views here.

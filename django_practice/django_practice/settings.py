@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     "django_celery_results",
     "django_celery_beat",
     "rest_framework_simplejwt",
+    "channels",
+    "django_eventstream",
 ]
 
 from datetime import timedelta
@@ -72,6 +74,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_grip.GripMiddleware",
 ]
 
 ROOT_URLCONF = "django_practice.urls"
@@ -92,7 +95,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "django_practice.wsgi.application"
+# WSGI_APPLICATION = "django_practice.wsgi.application"
+# asgi
+ASGI_APPLICATION = "django_practice.asgi.application"
 
 
 # Database

@@ -32,6 +32,7 @@ from ironman.views import (
     test_celery,
     ItemCreate,
     UserRetrieve,
+    test_sse,
 )
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
@@ -61,4 +62,5 @@ urlpatterns = [
     ),
     path("api/token/refresh", TokenRefreshView.as_view(), name="api-token-refresh"),
     path("api/user", UserRetrieve.as_view(), name="api-user-retrieve"),
+    path("events/trigger", test_sse, name="sse-test"),
 ]
