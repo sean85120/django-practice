@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     "django_eventstream",
 ]
 
+# GRIP_URL = 'http://localhost:5561'
+
 from datetime import timedelta
 
 SIMPLE_JWT = {
@@ -103,12 +105,6 @@ ASGI_APPLICATION = "django_practice.asgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASE_ROUTERS = (
-#     'ironman.dbrouters.TestDBRouter',
-# )
-
-# DATABASE_ROUTERS = ['django_practice.settings.DemoRouter']
-# DATABASE_APPS_MAPPING = {'test': 'test'}
 
 DATABASES = {
     "default": {
@@ -137,45 +133,6 @@ DATABASES = {
 #     }
 # }
 
-# class DemoRouter:
-#     route_app_labels = {'test'}
-#     """
-#     A router to control all database operations on models in the
-#     user application.
-#     """
-#     def db_for_read(self, model, **hints):
-#         """
-#         Attempts to read user models go to users_db.
-#         """
-#         if model._meta.app_label == 'test_data':
-#             return 'test'
-#         return None
-
-#     def db_for_write(self, model, **hints):
-#         """
-#         Attempts to write user models go to users_db.
-#         """
-#         if model._meta.app_label == 'test_data':
-#             return 'test'
-#         return None
-
-#     def allow_relation(self, obj1, obj2, **hints):
-#         """
-#         Allow relations if a model in the user app is involved.
-#         """
-#         if obj1._meta.app_label == 'test_data' or \
-#            obj2._meta.app_label == 'test_data':
-#            return True
-#         return None
-
-#     def allow_migrate(self, db, app_label, model_name=None, **hints):
-#         """
-#         Make sure the auth app only appears in the 'users_db'
-#         database.
-#         """
-#         if app_label == 'test_data':
-#             return db == 'test'
-#         return None
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

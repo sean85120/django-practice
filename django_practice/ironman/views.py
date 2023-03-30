@@ -22,16 +22,33 @@ from .serializers import RegisterSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .serializers import UserSerializer
 from django.http import StreamingHttpResponse
-
+from django.views.decorators.csrf import csrf_exempt
 
 # asgi
-from django_eventstream import send_event
+from django_eventstream import send_event, event
 
 
+# def my_event_stream(request, id):
+#     response = HttpResponse(content_type="text/event-stream")
+#     response["Cache-Control"] = "no-cache"
+#     response["Transfer-Encoding"] = "chunked"
+
+#     print("id:", id)
+
+#     def event_callback(event):
+#         send_event("myevent", event, event_id=id)
+
+#     return response
+
+
+@csrf_exempt
 def test_sse(request):
-    message = send_event("test", "message", {"text": "hello world"})
-    print("message: ", message)
-    return HttpResponse(message, content_type="event-stream")
+    if request.method == "POST":
+        id = request.POST.get("id")
+        print(f"test{id}")
+        send_event(f"test{id}", "message", {"text": "hello world"})
+        message = f"send event test{id}"
+        return HttpResponse(message, content_type="event-stream")
 
 
 # Create your views here.

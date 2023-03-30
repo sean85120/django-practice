@@ -15,7 +15,9 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.auth import AuthMiddlewareStack
 import django_eventstream
 
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_practice.settings")
+
 
 # application = get_asgi_application()
 application = ProtocolTypeRouter(
@@ -23,11 +25,11 @@ application = ProtocolTypeRouter(
         "http": URLRouter(
             [
                 path(
-                    "events/",
+                    "events/<channel>",
                     AuthMiddlewareStack(
                         URLRouter(django_eventstream.routing.urlpatterns)
                     ),
-                    {"channels": ["test"]},
+                    # {"channels": ["test{id}"]},
                 ),
                 re_path(r"", get_asgi_application()),
             ]

@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from ironman.views import (
     index,
     hello,
@@ -36,6 +36,7 @@ from ironman.views import (
 )
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+import django_eventstream
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -62,5 +63,6 @@ urlpatterns = [
     ),
     path("api/token/refresh", TokenRefreshView.as_view(), name="api-token-refresh"),
     path("api/user", UserRetrieve.as_view(), name="api-user-retrieve"),
-    path("events/trigger", test_sse, name="sse-test"),
+    path("events_trigger/", test_sse, name="sse-test"),
+    # path("events/", include(django_eventstream.urls), {"channels": ["test"]}),
 ]
